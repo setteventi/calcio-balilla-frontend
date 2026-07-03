@@ -3,13 +3,15 @@ import { API_URL } from "./api-url";
 export { API_URL };
 
 /**
- * Fetch da un Client Component: usa il cookie del browser via credentials:"include".
+ * Fetch da un Client Component: passa dal proxy same-origin /api (vedi next.config.ts)
+ * così il cookie di sessione viene impostato sul dominio del frontend, non su quello
+ * del backend — necessario perché i Server Component leggano la sessione via cookies().
  */
 export async function clientFetch<T>(
   path: string,
   init?: RequestInit
 ): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
+  const res = await fetch(`/api${path}`, {
     ...init,
     credentials: "include",
     headers: {
