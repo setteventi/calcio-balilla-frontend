@@ -139,7 +139,7 @@ export function MatchForm({ players }: { players: PlayerPublic[] }) {
         )}
       </div>
 
-      <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-start gap-3">
+      <div className="mt-4 flex flex-col gap-3">
         <TeamBox
           label="Squadra A"
           slots={teamA}
@@ -150,27 +150,28 @@ export function MatchForm({ players }: { players: PlayerPublic[] }) {
           onSelectWinner={() => setWinner("A")}
         />
 
-        <div className="mt-10 flex flex-col items-center gap-2">
-          <span className="font-display text-xl text-bone-dim">VS</span>
-          <div className="flex items-center gap-1">
+        <div className="flex items-center justify-center gap-3">
+          <div className="h-px flex-1 bg-felt-line" />
+          <div className="flex items-center gap-2">
             <input
               value={scoreA}
               onChange={(e) => handleScoreChange("A", e.target.value)}
               inputMode="numeric"
               placeholder="—"
               aria-label="Punti squadra A"
-              className="h-9 w-9 rounded-md border border-felt-line bg-felt-950 text-center font-mono text-sm text-bone outline-none focus:border-amber"
+              className="h-9 w-9 shrink-0 rounded-md border border-felt-line bg-felt-950 text-center font-mono text-sm text-bone outline-none focus:border-amber"
             />
-            <span className="font-mono text-xs text-bone-dim">-</span>
+            <span className="font-display text-lg text-bone-dim">VS</span>
             <input
               value={scoreB}
               onChange={(e) => handleScoreChange("B", e.target.value)}
               inputMode="numeric"
               placeholder="—"
               aria-label="Punti squadra B"
-              className="h-9 w-9 rounded-md border border-felt-line bg-felt-950 text-center font-mono text-sm text-bone outline-none focus:border-amber"
+              className="h-9 w-9 shrink-0 rounded-md border border-felt-line bg-felt-950 text-center font-mono text-sm text-bone outline-none focus:border-amber"
             />
           </div>
+          <div className="h-px flex-1 bg-felt-line" />
         </div>
 
         <TeamBox
