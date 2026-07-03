@@ -194,7 +194,7 @@ export function MatchForm({ players }: { players: PlayerPublic[] }) {
       <button
         disabled={!canSubmit}
         onClick={submit}
-        className="mt-4 w-full rounded-xl bg-amber py-3 font-display text-xl tracking-wide text-white transition-opacity disabled:opacity-30"
+        className="mt-4 w-full rounded-xl bg-amber py-3 font-display text-xl tracking-wide text-white transition-colors disabled:bg-felt-line disabled:text-bone-dim"
       >
         {submitting ? "Salvataggio…" : "Registra risultato"}
       </button>
