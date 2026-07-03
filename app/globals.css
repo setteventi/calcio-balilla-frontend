@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --felt-950: #06100a;
+  --felt-900: #0b1a10;
+  --felt-800: #123020;
+  --felt-700: #1a4a2c;
+  --led-amber: #ffb020;
+  --led-red: #ff4d3d;
+  --chrome: #b9c2c6;
+  --bone: #f2ede1;
+  --bone-dim: #c9c2b3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-felt: var(--felt-950);
+  --color-felt-panel: var(--felt-900);
+  --color-felt-raised: var(--felt-800);
+  --color-felt-line: var(--felt-700);
+  --color-amber: var(--led-amber);
+  --color-led-red: var(--led-red);
+  --color-chrome: var(--chrome);
+  --color-bone: var(--bone);
+  --color-bone-dim: var(--bone-dim);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--felt-950);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(26, 74, 44, 0.55), transparent 60%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.scoreboard-digit {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 12px currentColor;
+}
+
+.rod-divider {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--chrome) 15%,
+    var(--chrome) 85%,
+    transparent
+  );
+  opacity: 0.35;
+}
+
+::selection {
+  background: var(--led-amber);
+  color: var(--felt-950);
 }
