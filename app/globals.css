@@ -5,7 +5,7 @@
   --felt-900: #160e28;
   --felt-800: #26173f;
   --felt-700: #402358;
-  --led-amber: #ff2e88;
+  --led-amber: #39ff14;
   --led-red: #ff3b5c;
   --neon-cyan: #1fe3ff;
   --chrome: #c9b8e0;
@@ -35,7 +35,7 @@ body {
 
 body {
   background-image:
-    radial-gradient(ellipse 90% 60% at 8% -10%, rgba(255, 46, 136, 0.35), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 8% -10%, rgba(57, 255, 20, 0.3), transparent 55%),
     radial-gradient(ellipse 90% 60% at 100% 10%, rgba(31, 227, 255, 0.22), transparent 55%),
     repeating-linear-gradient(
       135deg,
