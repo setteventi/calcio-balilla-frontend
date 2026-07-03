@@ -41,7 +41,7 @@ export default async function ClassificaPage() {
               </div>
               <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-felt-950">
                 <div
-                  className="h-full bg-felt-line"
+                  className="h-full bg-cyan"
                   style={{ width: `${Math.max(4, s.weightShare * 100)}%` }}
                 />
               </div>

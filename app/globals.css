@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --felt-950: #06100a;
-  --felt-900: #0b1a10;
-  --felt-800: #123020;
-  --felt-700: #1a4a2c;
-  --led-amber: #ffb020;
-  --led-red: #ff4d3d;
-  --chrome: #b9c2c6;
-  --bone: #f2ede1;
-  --bone-dim: #c9c2b3;
+  --felt-950: #0a0714;
+  --felt-900: #160e28;
+  --felt-800: #26173f;
+  --felt-700: #402358;
+  --led-amber: #ff2e88;
+  --led-red: #ff3b5c;
+  --neon-cyan: #1fe3ff;
+  --chrome: #c9b8e0;
+  --bone: #f4eefc;
+  --bone-dim: #b7a4d1;
 }
 
 @theme inline {
@@ -19,6 +20,7 @@
   --color-felt-line: var(--felt-700);
   --color-amber: var(--led-amber);
   --color-led-red: var(--led-red);
+  --color-cyan: var(--neon-cyan);
   --color-chrome: var(--chrome);
   --color-bone: var(--bone);
   --color-bone-dim: var(--bone-dim);
@@ -33,11 +35,12 @@ body {
 
 body {
   background-image:
-    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(26, 74, 44, 0.55), transparent 60%),
+    radial-gradient(ellipse 90% 60% at 8% -10%, rgba(255, 46, 136, 0.35), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 10%, rgba(31, 227, 255, 0.22), transparent 55%),
     repeating-linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.015) 0px,
-      rgba(255, 255, 255, 0.015) 1px,
+      rgba(255, 255, 255, 0.02) 0px,
+      rgba(255, 255, 255, 0.02) 1px,
       transparent 1px,
       transparent 6px
     );

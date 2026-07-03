@@ -70,6 +70,7 @@ export default async function GiocatorePage({
             label="Rendimento difesa"
             value={player.defenseWinRate !== null ? pct(player.defenseWinRate) : "—"}
             sub={`${player.defenseMatches} partite`}
+            accent="cyan"
           />
         </section>
 
@@ -133,10 +134,24 @@ export default async function GiocatorePage({
   );
 }
 
-function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
+function StatCard({
+  label,
+  value,
+  sub,
+  accent = "amber",
+}: {
+  label: string;
+  value: string;
+  sub?: string;
+  accent?: "amber" | "cyan";
+}) {
   return (
     <div className="rounded-xl border border-felt-line bg-felt-panel px-3 py-3 text-center">
-      <span className="scoreboard-digit block text-2xl text-amber">{value}</span>
+      <span
+        className={`scoreboard-digit block text-2xl ${accent === "cyan" ? "text-cyan" : "text-amber"}`}
+      >
+        {value}
+      </span>
       <span className="font-mono text-[10px] uppercase tracking-widest text-bone-dim">
         {label}
       </span>
