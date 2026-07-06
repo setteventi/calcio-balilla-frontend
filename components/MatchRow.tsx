@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { MatchListItem } from "@/lib/types";
 
 function formatWhen(iso: string) {
@@ -11,7 +12,10 @@ export function MatchRow({ match }: { match: MatchListItem }) {
   const aWon = match.winner_team === "A";
   const hasScore = match.score_a !== null && match.score_b !== null;
   return (
-    <div className="flex items-center justify-between rounded-xl border border-felt-line bg-felt-panel px-3 py-2.5">
+    <Link
+      href={`/storico/${match.id}/modifica`}
+      className="flex items-center justify-between rounded-xl border border-felt-line bg-felt-panel px-3 py-2.5 transition-colors hover:border-amber"
+    >
       <div className="flex flex-col gap-0.5">
         <span className={`font-mono text-sm ${aWon ? "text-amber" : "text-bone-dim"}`}>
           {match.team_a_player1.name} + {match.team_a_player2.name}
@@ -28,6 +32,6 @@ export function MatchRow({ match }: { match: MatchListItem }) {
           {formatWhen(match.played_at)}
         </span>
       </div>
-    </div>
+    </Link>
   );
 }

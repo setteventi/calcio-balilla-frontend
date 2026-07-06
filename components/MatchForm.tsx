@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clientFetch } from "@/lib/api";
-import type { CreateMatchInput, MatchRole, PlayerPublic } from "@/lib/types";
+import type { CreateMatchInput, MatchListItem, MatchRole, PlayerPublic } from "@/lib/types";
 
 const ROLES: { value: MatchRole; label: string }[] = [
   { value: "attacco", label: "ATT" },
@@ -20,19 +20,48 @@ function emptySlot(role: MatchRole): Slot {
   return { playerId: "", role };
 }
 
-export function MatchForm({ players }: { players: PlayerPublic[] }) {
+function slotsFromMatch(match: MatchListItem): {
+  teamA: [Slot, Slot];
+  teamB: [Slot, Slot];
+  winner: "A" | "B";
+  scoreA: string;
+  scoreB: string;
+} {
+  return {
+    teamA: [
+      { playerId: match.team_a_player1.id, role: match.team_a_player1_role },
+      { playerId: match.team_a_player2.id, role: match.team_a_player2_role },
+    ],
+    teamB: [
+      { playerId: match.team_b_player1.id, role: match.team_b_player1_role },
+      { playerId: match.team_b_player2.id, role: match.team_b_player2_role },
+    ],
+    winner: match.winner_team,
+    scoreA: match.score_a !== null ? String(match.score_a) : "",
+    scoreB: match.score_b !== null ? String(match.score_b) : "",
+  };
+}
+
+interface MatchFormProps {
+  players: PlayerPublic[];
+  mode?: "create" | "edit";
+  matchId?: string;
+  initialMatch?: MatchListItem;
+}
+
+export function MatchForm({ players, mode = "create", matchId, initialMatch }: MatchFormProps) {
   const router = useRouter();
-  const [teamA, setTeamA] = useState<[Slot, Slot]>([
-    emptySlot("attacco"),
-    emptySlot("difesa"),
-  ]);
-  const [teamB, setTeamB] = useState<[Slot, Slot]>([
-    emptySlot("attacco"),
-    emptySlot("difesa"),
-  ]);
-  const [winner, setWinner] = useState<"A" | "B" | null>(null);
-  const [scoreA, setScoreA] = useState("");
-  const [scoreB, setScoreB] = useState("");
+  const initial = initialMatch ? slotsFromMatch(initialMatch) : null;
+
+  const [teamA, setTeamA] = useState<[Slot, Slot]>(
+    initial?.teamA ?? [emptySlot("attacco"), emptySlot("difesa")]
+  );
+  const [teamB, setTeamB] = useState<[Slot, Slot]>(
+    initial?.teamB ?? [emptySlot("attacco"), emptySlot("difesa")]
+  );
+  const [winner, setWinner] = useState<"A" | "B" | null>(initial?.winner ?? null);
+  const [scoreA, setScoreA] = useState(initial?.scoreA ?? "");
+  const [scoreB, setScoreB] = useState(initial?.scoreB ?? "");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
@@ -112,6 +141,14 @@ export function MatchForm({ players }: { players: PlayerPublic[] }) {
         winner_team: winner,
         ...(hasScoreA && hasScoreB ? { score_a: Number(scoreA), score_b: Number(scoreB) } : {}),
       };
+
+      if (mode === "edit" && matchId) {
+        await clientFetch(`/matches/${matchId}`, { method: "PUT", body: JSON.stringify(payload) });
+        router.push("/storico");
+        router.refresh();
+        return;
+      }
+
       await clientFetch("/matches", { method: "POST", body: JSON.stringify(payload) });
       setSuccess(true);
       setTeamA([emptySlot("attacco"), emptySlot("difesa")]);
@@ -128,10 +165,14 @@ export function MatchForm({ players }: { players: PlayerPublic[] }) {
     }
   }
 
+  const isEdit = mode === "edit";
+
   return (
     <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-display text-2xl text-amber">Nuova partita</h2>
+        <h2 className="font-display text-2xl text-amber">
+          {isEdit ? "Modifica partita" : "Nuova partita"}
+        </h2>
         {success && (
           <span className="font-mono text-xs uppercase tracking-widest text-amber">
             Salvata ✓
@@ -196,7 +237,7 @@ export function MatchForm({ players }: { players: PlayerPublic[] }) {
         onClick={submit}
         className="mt-4 w-full rounded-xl bg-amber py-3 font-display text-xl tracking-wide text-white transition-colors disabled:bg-felt-line disabled:text-bone-dim"
       >
-        {submitting ? "Salvataggio…" : "Registra risultato"}
+        {submitting ? "Salvataggio…" : isEdit ? "Salva modifiche" : "Registra risultato"}
       </button>
     </div>
   );
