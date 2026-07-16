@@ -8,6 +8,7 @@ const ITEMS = [
   { href: "/classifica", label: "Classifica", icon: "🏆" },
   { href: "/coppie", label: "Coppie", icon: "🤝" },
   { href: "/storico", label: "Storico", icon: "📋" },
+  { href: "/analisi", label: "Analisi", icon: "📊" },
 ];
 
 export function BottomNav() {
@@ -22,7 +23,7 @@ export function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-1 flex-col items-center gap-1 py-3 text-xs font-mono uppercase tracking-wider transition-colors ${
+              className={`flex flex-1 flex-col items-center gap-1 py-3 text-[10px] font-mono uppercase tracking-tight transition-colors ${
                 active ? "text-amber" : "text-bone-dim hover:text-bone"
               }`}
             >

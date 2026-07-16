@@ -11,6 +11,31 @@
   --chrome: #c9b8e0;
   --bone: #f4eefc;
   --bone-dim: #b7a4d1;
+
+  /* Palette grafici (/analisi) — toni più scuri delle stesse tinte UI, per
+     restare nella banda di luminosità OKLCH corretta su sfondo scuro (vedi
+     skill dataviz). Validata con scripts/validate_palette.js contro la
+     superficie delle card (--felt-900, #160e28) in --mode dark. Non riusare
+     --led-amber/--neon-cyan/--led-red (troppo chiari/accesi) per le serie dati. */
+  --chart-cat-1: #16a34a; /* verde — stessa tinta del brand, più scura */
+  --chart-cat-2: #0891b2; /* ciano/teal — stessa tinta del brand, più scura */
+  --chart-cat-3: #db2777; /* magenta */
+  --chart-cat-4: #d97706; /* ambra */
+  --chart-cat-5: #7c3aed; /* viola */
+  --chart-cat-6: #ea580c; /* arancio */
+
+  --chart-pos: var(--chart-cat-1);
+  --chart-neg: #dc2626;
+  --chart-diverging-mid: #3a3245;
+
+  --chart-seq-100: #1c5f6e;
+  --chart-seq-200: #1f7a8f;
+  --chart-seq-300: #22a0b8;
+  --chart-seq-400: #26c3d9;
+  --chart-seq-500: #4de8fa;
+
+  --chart-surface: var(--felt-900);
+  --chart-grid: rgba(201, 184, 224, 0.12);
 }
 
 @theme inline {
@@ -24,6 +49,21 @@
   --color-chrome: var(--chrome);
   --color-bone: var(--bone);
   --color-bone-dim: var(--bone-dim);
+  --color-chart-cat-1: var(--chart-cat-1);
+  --color-chart-cat-2: var(--chart-cat-2);
+  --color-chart-cat-3: var(--chart-cat-3);
+  --color-chart-cat-4: var(--chart-cat-4);
+  --color-chart-cat-5: var(--chart-cat-5);
+  --color-chart-cat-6: var(--chart-cat-6);
+  --color-chart-pos: var(--chart-pos);
+  --color-chart-neg: var(--chart-neg);
+  --color-chart-diverging-mid: var(--chart-diverging-mid);
+  --color-chart-seq-100: var(--chart-seq-100);
+  --color-chart-seq-200: var(--chart-seq-200);
+  --color-chart-seq-300: var(--chart-seq-300);
+  --color-chart-seq-400: var(--chart-seq-400);
+  --color-chart-seq-500: var(--chart-seq-500);
+  --color-chart-surface: var(--chart-surface);
   --font-display: var(--font-display);
   --font-mono: var(--font-mono);
 }
