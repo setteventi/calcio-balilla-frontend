@@ -2,6 +2,7 @@ import Link from "next/link";
 import { serverFetch } from "@/lib/api.server";
 import type { MatchListItem, PlayerPublic } from "@/lib/types";
 import { MatchForm } from "@/components/MatchForm";
+import { DeleteMatchButton } from "@/components/DeleteMatchButton";
 import { BottomNav } from "@/components/BottomNav";
 
 export default async function ModificaPartitaPage({
@@ -33,6 +34,7 @@ export default async function ModificaPartitaPage({
 
       <main className="mx-auto w-full max-w-md flex-1 px-5 pb-6 pt-5">
         <MatchForm players={players} mode="edit" matchId={id} initialMatch={match} />
+        <DeleteMatchButton matchId={id} />
       </main>
 
       <BottomNav />
