@@ -81,3 +81,10 @@ export interface MatchTimelineEntry {
   scoreB: number | null;
   eloAfter: Record<string, number>;
 }
+
+export interface DaysAtTopEntry {
+  playerId: string;
+  name: string;
+  days: number;
+  isCurrent: boolean;
+}

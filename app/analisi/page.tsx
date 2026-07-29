@@ -1,5 +1,6 @@
 import { serverFetch } from "@/lib/api.server";
 import type {
+  DaysAtTopEntry,
   HeadToHeadStats,
   MatchTimelineEntry,
   PairStats,
@@ -10,7 +11,7 @@ import { BottomNav } from "@/components/BottomNav";
 import { EloHistoryChart } from "@/components/charts/EloHistoryChart";
 import { PlayerRadarChart } from "@/components/charts/PlayerRadarChart";
 import { HeatmapGrid, type HeatmapCell } from "@/components/charts/HeatmapGrid";
-
+import { DaysAtTopChart } from "@/components/charts/DaysAtTopChart";
 import { ActivityCalendar } from "@/components/charts/ActivityCalendar";
 import { MarginBoxPlot } from "@/components/charts/MarginBoxPlot";
 
@@ -19,12 +20,13 @@ function pairKey(a: string, b: string) {
 }
 
 export default async function AnalisiPage() {
-  const [me, playerStats, pairs, headToHead, timeline] = await Promise.all([
+  const [me, playerStats, pairs, headToHead, timeline, daysAtTop] = await Promise.all([
     serverFetch<{ id: string; name: string }>("/auth/me"),
     serverFetch<PlayerStats[]>("/stats/players"),
     serverFetch<PairStats[]>("/stats/pairs"),
     serverFetch<HeadToHeadStats[]>("/stats/head-to-head"),
     serverFetch<MatchTimelineEntry[]>("/stats/timeline"),
+    serverFetch<DaysAtTopEntry[]>("/stats/days-at-top"),
   ]);
 
   // Ordine classifica (già per ELO decrescente) per righe/colonne delle heatmap
@@ -72,6 +74,8 @@ export default async function AnalisiPage() {
 
       <main className="mx-auto w-full max-w-md flex-1 space-y-6 px-5 pb-6 pt-5">
         <EloHistoryChart players={playerStats} timeline={timeline} currentPlayerId={me.id} />
+
+        <DaysAtTopChart entries={daysAtTop} />
 
         <PlayerRadarChart players={playerStats} currentPlayerId={me.id} />
 
