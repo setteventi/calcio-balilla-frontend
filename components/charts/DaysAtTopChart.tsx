@@ -1,9 +1,16 @@
-import type { DaysAtTopEntry } from "@/lib/types";
+import type { DaysAtTopEntry, FreezePeriod } from "@/lib/types";
+import { FreezeManager } from "@/components/FreezeManager";
 
 // Confronto di magnitudo su una sola metrica (giorni da n.1): barre orizzontali
 // ordinate. Il n.1 attuale è pieno + corona; gli altri smorzati. Nessuna seconda
 // tinta: una metrica sola = un colore solo.
-export function DaysAtTopChart({ entries }: { entries: DaysAtTopEntry[] }) {
+export function DaysAtTopChart({
+  entries,
+  freezePeriods,
+}: {
+  entries: DaysAtTopEntry[];
+  freezePeriods: FreezePeriod[];
+}) {
   const withDays = entries.filter((e) => e.days > 0);
   const maxDays = Math.max(1, ...withDays.map((e) => e.days));
 
@@ -48,6 +55,8 @@ export function DaysAtTopChart({ entries }: { entries: DaysAtTopEntry[] }) {
           })}
         </div>
       )}
+
+      <FreezeManager periods={freezePeriods} />
     </div>
   );
 }

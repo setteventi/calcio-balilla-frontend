@@ -88,3 +88,10 @@ export interface DaysAtTopEntry {
   days: number;
   isCurrent: boolean;
 }
+
+export interface FreezePeriod {
+  id: string;
+  start_date: string;
+  end_date: string;
+  created_at: string;
+}

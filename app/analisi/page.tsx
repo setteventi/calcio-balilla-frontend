@@ -1,6 +1,7 @@
 import { serverFetch } from "@/lib/api.server";
 import type {
   DaysAtTopEntry,
+  FreezePeriod,
   HeadToHeadStats,
   MatchTimelineEntry,
   PairStats,
@@ -20,14 +21,16 @@ function pairKey(a: string, b: string) {
 }
 
 export default async function AnalisiPage() {
-  const [me, playerStats, pairs, headToHead, timeline, daysAtTop] = await Promise.all([
-    serverFetch<{ id: string; name: string }>("/auth/me"),
-    serverFetch<PlayerStats[]>("/stats/players"),
-    serverFetch<PairStats[]>("/stats/pairs"),
-    serverFetch<HeadToHeadStats[]>("/stats/head-to-head"),
-    serverFetch<MatchTimelineEntry[]>("/stats/timeline"),
-    serverFetch<DaysAtTopEntry[]>("/stats/days-at-top"),
-  ]);
+  const [me, playerStats, pairs, headToHead, timeline, daysAtTop, freezePeriods] =
+    await Promise.all([
+      serverFetch<{ id: string; name: string }>("/auth/me"),
+      serverFetch<PlayerStats[]>("/stats/players"),
+      serverFetch<PairStats[]>("/stats/pairs"),
+      serverFetch<HeadToHeadStats[]>("/stats/head-to-head"),
+      serverFetch<MatchTimelineEntry[]>("/stats/timeline"),
+      serverFetch<DaysAtTopEntry[]>("/stats/days-at-top"),
+      serverFetch<FreezePeriod[]>("/freeze"),
+    ]);
 
   // Ordine classifica (già per ELO decrescente) per righe/colonne delle heatmap
   const orderedPlayers: PlayerPublic[] = playerStats.map((s) => ({ id: s.playerId, name: s.name }));
@@ -75,7 +78,7 @@ export default async function AnalisiPage() {
       <main className="mx-auto w-full max-w-md flex-1 space-y-6 px-5 pb-6 pt-5">
         <EloHistoryChart players={playerStats} timeline={timeline} currentPlayerId={me.id} />
 
-        <DaysAtTopChart entries={daysAtTop} />
+        <DaysAtTopChart entries={daysAtTop} freezePeriods={freezePeriods} />
 
         <PlayerRadarChart players={playerStats} currentPlayerId={me.id} />
 
