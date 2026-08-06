@@ -13,6 +13,7 @@ import { EloHistoryChart } from "@/components/charts/EloHistoryChart";
 import { PlayerRadarChart } from "@/components/charts/PlayerRadarChart";
 import { HeatmapGrid, type HeatmapCell } from "@/components/charts/HeatmapGrid";
 import { DaysAtTopChart } from "@/components/charts/DaysAtTopChart";
+import { PageBody, PageHeader, PageShell } from "@/components/ui/Page";
 import { ActivityCalendar } from "@/components/charts/ActivityCalendar";
 import { MarginBoxPlot } from "@/components/charts/MarginBoxPlot";
 
@@ -66,16 +67,10 @@ export default async function AnalisiPage() {
   const headToHeadMatrix = buildMatrix(headToHeadCell);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="px-5 pt-8">
-        <p className="font-mono text-xs uppercase tracking-widest text-bone-dim">Analisi</p>
-        <h1 className="font-display text-4xl text-bone">
-          Dentro i <span className="text-amber">dati</span>
-        </h1>
-        <div className="rod-divider mt-3" />
-      </header>
+    <PageShell>
+      <PageHeader eyebrow="Analisi" title="Dentro i" accent="dati" />
 
-      <main className="mx-auto w-full max-w-md flex-1 space-y-6 px-5 pb-6 pt-5">
+      <PageBody className="space-y-6">
         <EloHistoryChart players={playerStats} timeline={timeline} currentPlayerId={me.id} />
 
         <DaysAtTopChart entries={daysAtTop} freezePeriods={freezePeriods} />
@@ -107,9 +102,9 @@ export default async function AnalisiPage() {
         <ActivityCalendar timeline={timeline} />
 
         <MarginBoxPlot timeline={timeline} />
-      </main>
+      </PageBody>
 
       <BottomNav />
-    </div>
+    </PageShell>
   );
 }

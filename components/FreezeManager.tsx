@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { clientFetch } from "@/lib/api";
 import type { FreezePeriod } from "@/lib/types";
+import { IconArrowRight, IconClose, IconSnowflake } from "@/components/icons";
 
 function formatDate(ymd: string): string {
   const [y, m, d] = ymd.split("-").map(Number);
@@ -68,7 +69,10 @@ export function FreezeManager({ periods }: { periods: FreezePeriod[] }) {
         onClick={() => setOpen((o) => !o)}
         className="flex w-full items-center justify-between font-mono text-[11px] uppercase tracking-widest text-bone-dim hover:text-amber"
       >
-        <span>❄️ Pausa estiva — {periods.length} period{periods.length === 1 ? "o" : "i"}</span>
+        <span className="flex items-center gap-1.5">
+          <IconSnowflake className="size-3.5" />
+          Pausa estiva — {periods.length} period{periods.length === 1 ? "o" : "i"}
+        </span>
         <span>{open ? "−" : "+"}</span>
       </button>
 
@@ -85,16 +89,18 @@ export function FreezeManager({ periods }: { periods: FreezePeriod[] }) {
                   key={p.id}
                   className="flex items-center justify-between rounded-lg border border-felt-line bg-felt-950/40 px-3 py-2"
                 >
-                  <span className="font-mono text-xs text-bone">
-                    {formatDate(p.start_date)} → {formatDate(p.end_date)}
+                  <span className="font-mono flex items-center gap-1.5 text-xs text-bone">
+                    {formatDate(p.start_date)}
+                    <IconArrowRight className="size-3 text-bone-dim" />
+                    {formatDate(p.end_date)}
                   </span>
                   <button
                     onClick={() => remove(p.id)}
                     disabled={busy}
                     aria-label="Elimina pausa"
-                    className="font-mono text-sm text-led-red disabled:opacity-40"
+                    className="text-led-red transition-opacity duration-[var(--dur-fast)] hover:opacity-70 disabled:opacity-40"
                   >
-                    ✕
+                    <IconClose className="size-4" />
                   </button>
                 </li>
               ))}

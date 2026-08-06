@@ -70,9 +70,9 @@ export function ActivityCalendar({ timeline }: { timeline: MatchTimelineEntry[] 
   const height = 7 * STEP + 14;
 
   return (
-    <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-      <h2 className="font-display text-2xl text-bone">Attività del gruppo</h2>
-      <p className="font-mono text-[11px] text-bone-dim">Partite giocate, ultime {WEEKS_BACK} settimane</p>
+    <div className="surface rounded-2xl p-4">
+      <h2 className="font-display text-h2 leading-tight text-bone">Attività del gruppo</h2>
+      <p className="font-mono text-caption text-bone-dim">Partite giocate, ultime {WEEKS_BACK} settimane</p>
 
       <p className="mt-2 min-h-[1.5rem] font-mono text-sm text-bone">
         {selected
@@ -129,12 +129,12 @@ export function ActivityCalendar({ timeline }: { timeline: MatchTimelineEntry[] 
       </div>
 
       <div className="mt-2 flex items-center justify-end gap-1.5">
-        <span className="font-mono text-[10px] text-bone-dim">meno</span>
+        <span className="font-mono text-caption text-bone-dim">meno</span>
         <div className="h-2.5 w-2.5 rounded-sm" style={{ background: "var(--felt-800)", opacity: 0.5 }} />
         {[0.25, 0.5, 0.75, 1].map((t) => (
           <div key={t} className="h-2.5 w-2.5 rounded-sm" style={{ background: sequentialColor(t) }} />
         ))}
-        <span className="font-mono text-[10px] text-bone-dim">più</span>
+        <span className="font-mono text-caption text-bone-dim">più</span>
       </div>
     </div>
   );

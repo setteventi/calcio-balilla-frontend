@@ -61,9 +61,9 @@ export function PlayerRadarChart({
 
   if (players.length === 0 || !player) {
     return (
-      <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-        <h2 className="font-display text-2xl text-bone">Profilo giocatore</h2>
-        <p className="mt-3 font-mono text-sm text-bone-dim">Nessun giocatore disponibile.</p>
+      <div className="surface rounded-2xl p-4">
+        <h2 className="font-display text-h2 leading-tight text-bone">Profilo giocatore</h2>
+        <p className="font-mono mt-3 text-body text-bone-dim">Nessun giocatore disponibile.</p>
       </div>
     );
   }
@@ -74,9 +74,9 @@ export function PlayerRadarChart({
     .join(" ");
 
   return (
-    <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
+    <div className="surface rounded-2xl p-4">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="font-display text-2xl text-bone">Profilo giocatore</h2>
+        <h2 className="font-display text-h2 leading-tight text-bone">Profilo giocatore</h2>
         <select
           value={selectedId}
           onChange={(e) => setSelectedId(e.target.value)}
@@ -89,7 +89,7 @@ export function PlayerRadarChart({
           ))}
         </select>
       </div>
-      <p className="font-mono text-[11px] text-bone-dim">
+      <p className="font-mono text-caption text-bone-dim">
         Ogni asse è il percentile di {player.name} rispetto al resto del gruppo
       </p>
 

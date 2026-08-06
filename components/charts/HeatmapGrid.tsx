@@ -91,17 +91,17 @@ export function HeatmapGrid({
 
   if (players.length < 2) {
     return (
-      <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-        <h2 className="font-display text-2xl text-bone">{title}</h2>
-        <p className="mt-3 font-mono text-sm text-bone-dim">Servono almeno 2 giocatori.</p>
+      <div className="surface rounded-2xl p-4">
+        <h2 className="font-display text-h2 leading-tight text-bone">{title}</h2>
+        <p className="font-mono mt-3 text-body text-bone-dim">Servono almeno 2 giocatori.</p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-      <h2 className="font-display text-2xl text-bone">{title}</h2>
-      <p className="font-mono text-[11px] text-bone-dim">{subtitle}</p>
+    <div className="surface rounded-2xl p-4">
+      <h2 className="font-display text-h2 leading-tight text-bone">{title}</h2>
+      <p className="font-mono text-caption text-bone-dim">{subtitle}</p>
 
       <p className="mt-2 min-h-[2.5rem] font-mono text-sm text-bone">
         {detail ?? "Tocca una cella per i dettagli"}
@@ -184,14 +184,14 @@ export function HeatmapGrid({
       </div>
 
       <div className="mt-3 flex items-center gap-2">
-        <span className="font-mono text-[10px] text-bone-dim">{legendLowLabel}</span>
+        <span className="font-mono text-caption text-bone-dim">{legendLowLabel}</span>
         <div
           className="h-2 flex-1 rounded-full"
           style={{
             background: "linear-gradient(90deg, var(--chart-neg), var(--chart-diverging-mid), var(--chart-pos))",
           }}
         />
-        <span className="font-mono text-[10px] text-bone-dim">{legendHighLabel}</span>
+        <span className="font-mono text-caption text-bone-dim">{legendHighLabel}</span>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { clientFetch } from "@/lib/api";
+import { IconCheck } from "@/components/icons";
 
 export function ProfileForm({ currentName }: { currentName: string }) {
   const router = useRouter();
@@ -106,7 +107,9 @@ export function ProfileForm({ currentName }: { currentName: string }) {
 
       {error && <p className="font-mono text-sm text-led-red">{error}</p>}
       {success && (
-        <p className="font-mono text-sm text-amber">Modifiche salvate ✓</p>
+        <p className="font-mono flex items-center gap-1.5 text-sm text-amber">
+          <IconCheck className="size-4" /> Modifiche salvate
+        </p>
       )}
 
       <button

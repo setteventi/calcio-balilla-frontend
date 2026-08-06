@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clientFetch } from "@/lib/api";
 import type { CreateMatchInput, MatchListItem, MatchRole, PlayerPublic } from "@/lib/types";
+import { IconCheck, IconTrophy } from "@/components/icons";
 
 const ROLES: { value: MatchRole; label: string }[] = [
   { value: "attacco", label: "ATT" },
@@ -174,8 +175,8 @@ export function MatchForm({ players, mode = "create", matchId, initialMatch }: M
           {isEdit ? "Modifica partita" : "Nuova partita"}
         </h2>
         {success && (
-          <span className="font-mono text-xs uppercase tracking-widest text-amber">
-            Salvata ✓
+          <span className="font-mono flex items-center gap-1 text-eyebrow uppercase tracking-[0.18em] text-amber">
+            <IconCheck className="size-3.5" /> Salvata
           </span>
         )}
       </div>
@@ -276,11 +277,12 @@ function TeamBox({
       }`}
     >
       <span
-        className={`font-mono text-[11px] uppercase tracking-widest ${
+        className={`font-mono flex items-center gap-1.5 text-eyebrow uppercase tracking-[0.18em] ${
           selected ? "text-amber" : "text-bone-dim"
         }`}
       >
-        {label} {selected && "🏆"}
+        {label}
+        {selected && <IconTrophy className="size-3.5" />}
       </span>
 
       {([0, 1] as const).map((i) => (

@@ -2,13 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  IconChart,
+  IconFoosball,
+  IconHandshake,
+  IconHistory,
+  IconTrophy,
+} from "@/components/icons";
 
 const ITEMS = [
-  { href: "/", label: "Gioca", icon: "⚽" },
-  { href: "/classifica", label: "Classifica", icon: "🏆" },
-  { href: "/coppie", label: "Coppie", icon: "🤝" },
-  { href: "/storico", label: "Storico", icon: "📋" },
-  { href: "/analisi", label: "Analisi", icon: "📊" },
+  { href: "/", label: "Gioca", Icon: IconFoosball },
+  { href: "/classifica", label: "Classifica", Icon: IconTrophy },
+  { href: "/coppie", label: "Coppie", Icon: IconHandshake },
+  { href: "/storico", label: "Storico", Icon: IconHistory },
+  { href: "/analisi", label: "Analisi", Icon: IconChart },
 ];
 
 export function BottomNav() {
@@ -23,11 +30,11 @@ export function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-1 flex-col items-center gap-1 py-3 text-[10px] font-mono uppercase tracking-tight transition-colors ${
+              className={`flex flex-1 flex-col items-center gap-1 py-3 text-[10px] font-mono uppercase tracking-tight transition-colors duration-[var(--dur-fast)] ${
                 active ? "text-amber" : "text-bone-dim hover:text-bone"
               }`}
             >
-              <span className="text-lg leading-none">{item.icon}</span>
+              <item.Icon className="size-5" />
               {item.label}
               {active && <span className="mt-0.5 h-0.5 w-6 rounded-full bg-amber" />}
             </Link>

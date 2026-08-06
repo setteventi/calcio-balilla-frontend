@@ -44,9 +44,9 @@ export function MarginBoxPlot({ timeline }: { timeline: MatchTimelineEntry[] }) 
 
   if (!stats) {
     return (
-      <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-        <h2 className="font-display text-2xl text-bone">Scarti punti</h2>
-        <p className="mt-3 font-mono text-sm text-bone-dim">
+      <div className="surface rounded-2xl p-4">
+        <h2 className="font-display text-h2 leading-tight text-bone">Scarti punti</h2>
+        <p className="font-mono mt-3 text-body text-bone-dim">
           Nessuna partita con punteggio esatto registrato ancora.
         </p>
       </div>
@@ -58,9 +58,9 @@ export function MarginBoxPlot({ timeline }: { timeline: MatchTimelineEntry[] }) 
   const xTicks = Array.from({ length: 5 }, (_, i) => Math.round((maxAxis / 4) * i));
 
   return (
-    <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-      <h2 className="font-display text-2xl text-bone">Scarti punti</h2>
-      <p className="font-mono text-[11px] text-bone-dim">
+    <div className="surface rounded-2xl p-4">
+      <h2 className="font-display text-h2 leading-tight text-bone">Scarti punti</h2>
+      <p className="font-mono text-caption text-bone-dim">
         Distribuzione dello scarto tra i due punteggi (solo partite con punteggio esatto)
       </p>
       {belowThreshold && (

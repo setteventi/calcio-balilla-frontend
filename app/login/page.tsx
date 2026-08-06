@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clientFetch } from "@/lib/api";
 import type { PlayerPublic } from "@/lib/types";
+import { IconBackspace } from "@/components/icons";
 
 type Mode = "select" | "pin" | "register";
 
@@ -216,7 +217,7 @@ function PinPad({
             onClick={() => (d === "⌫" ? onBackspace() : onDigit(d))}
             className="flex h-16 w-16 items-center justify-center rounded-full border border-felt-line font-display text-3xl text-bone transition-colors hover:border-amber hover:text-amber active:scale-95 disabled:opacity-40"
           >
-            {d}
+            {d === "\u232b" ? <IconBackspace className="size-6" /> : d}
           </button>
         )
       )}

@@ -117,14 +117,14 @@ export function EloHistoryChart({
       : "Inizio";
 
   return (
-    <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
+    <div className="surface rounded-2xl p-4">
       <div className="flex items-baseline justify-between">
-        <h2 className="font-display text-2xl text-bone">Storico ELO</h2>
-        <span className="font-mono text-[11px] text-bone-dim">{activeDate}</span>
+        <h2 className="font-display text-h2 leading-tight text-bone">Storico ELO</h2>
+        <span className="font-mono text-caption text-bone-dim">{activeDate}</span>
       </div>
 
       {points.n === 0 ? (
-        <p className="mt-3 font-mono text-sm text-bone-dim">
+        <p className="font-mono mt-3 text-body text-bone-dim">
           Nessuna partita registrata ancora.
         </p>
       ) : (
@@ -140,7 +140,7 @@ export function EloHistoryChart({
                     className="h-0.5 w-4 rounded-full"
                     style={{ backgroundColor: categoricalColor(idx) }}
                   />
-                  <span className="font-mono text-[11px] text-bone-dim">{nameById.get(id)}</span>
+                  <span className="font-mono text-caption text-bone-dim">{nameById.get(id)}</span>
                   <span className="scoreboard-digit text-sm text-bone">{v ?? "—"}</span>
                 </div>
               );

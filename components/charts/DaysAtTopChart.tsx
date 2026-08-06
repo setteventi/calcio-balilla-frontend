@@ -1,5 +1,6 @@
 import type { DaysAtTopEntry, FreezePeriod } from "@/lib/types";
 import { FreezeManager } from "@/components/FreezeManager";
+import { IconCrown } from "@/components/icons";
 
 // Confronto di magnitudo su una sola metrica (giorni da n.1): barre orizzontali
 // ordinate. Il n.1 attuale è pieno + corona; gli altri smorzati. Nessuna seconda
@@ -15,14 +16,14 @@ export function DaysAtTopChart({
   const maxDays = Math.max(1, ...withDays.map((e) => e.days));
 
   return (
-    <div className="rounded-2xl border border-felt-line bg-felt-panel p-4">
-      <h2 className="font-display text-2xl text-bone">Giorni da n.1</h2>
-      <p className="font-mono text-[11px] text-bone-dim">
+    <div className="surface rounded-2xl p-4">
+      <h2 className="font-display text-h2 leading-tight text-bone">Giorni da n.1</h2>
+      <p className="font-mono text-caption text-bone-dim">
         Giorni totali passati in testa alla classifica ELO — cresce ogni giorno che resti primo
       </p>
 
       {withDays.length === 0 ? (
-        <p className="mt-3 font-mono text-sm text-bone-dim">
+        <p className="font-mono mt-3 text-body text-bone-dim">
           Ancora nessun n.1 stabile: servono più partite.
         </p>
       ) : (
@@ -36,8 +37,13 @@ export function DaysAtTopChart({
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-2">
-                    <span className="truncate font-display text-lg text-bone">
-                      {e.name} {e.isCurrent && "👑"}
+                    <span className="flex min-w-0 items-center gap-1.5">
+                      <span className="truncate font-display text-lg text-bone">
+                        {e.name}
+                      </span>
+                      {e.isCurrent && (
+                        <IconCrown className="size-3.5 shrink-0 text-amber" />
+                      )}
                     </span>
                     <span className="scoreboard-digit shrink-0 text-sm text-amber">
                       {e.days} {e.days === 1 ? "giorno" : "giorni"}
