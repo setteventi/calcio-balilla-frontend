@@ -79,7 +79,7 @@ export function FreezeManager({ periods }: { periods: FreezePeriod[] }) {
       {open && (
         <div className="mt-3 space-y-3">
           <p className="font-mono text-[11px] text-bone-dim">
-            Nei giorni di pausa nessuno accumula giorni da n.1: il conteggio si ferma e riparte alla fine.
+            Le partite giocate in questi giorni valgono per l&apos;ELO ma non per i giorni da n.1. Se in pausa non si gioca non serve: i giorni senza partite non contano già.
           </p>
 
           {periods.length > 0 && (

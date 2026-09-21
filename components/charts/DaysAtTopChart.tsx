@@ -19,7 +19,7 @@ export function DaysAtTopChart({
     <div className="surface rounded-2xl p-4">
       <h2 className="font-display text-h2 leading-tight text-bone">Giorni da n.1</h2>
       <p className="font-mono text-caption text-bone-dim">
-        Giorni totali passati in testa alla classifica ELO — cresce ogni giorno che resti primo
+        Giorni di gioco chiusi in testa alla classifica ELO — contano solo i giorni in cui si è giocato
       </p>
 
       {withDays.length === 0 ? (
